@@ -25,4 +25,13 @@ function computerRPS(){
         console.log(errorMessage);
     }
 }
+
+//Get user input (Rock, Paper, or Scissors) 
+function getUserRPS(){
+    let userInput = prompt('Please enter Rock, Paper, or Scissors:', '');
+    userInput=userInput.toLowerCase(); // Convert to lowercase
+    let firstLetter=userInput.charAt(0); // Get the first letter of user input
+    userInput=userInput.replace(firstLetter, firstLetter.toUpperCase());
+}
+getUserRPS();
 computerRPS();
