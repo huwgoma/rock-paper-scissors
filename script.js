@@ -119,11 +119,11 @@ function game(){
         let matchResult='';
         
         if (userWins>userLosses){
-            matchResult=`Congratulations, you win ${userWins}-${userLosses}!`;
+            return matchResult=`Congratulations, you win ${userWins}-${userLosses}!`;
         } else if (userWins<userLosses){
-            matchResult=`Computer wins ${userLosses}-${userWins}.`;
+            return matchResult=`Computer wins ${userLosses}-${userWins}.`;
         } else if (userWins==userLosses){
-            matchResult=`It's a tie!`;
+            return matchResult=`It's a tie!`;
         }
     }
 
@@ -137,10 +137,8 @@ function game(){
             console.log(`Computer's Wins: ${userLossCount}`);
             //Run displayResult (Win/Loss handling), then pass the result to winLossCount
             //This should return a count of your wins and losses over the 5 games 
-            
-            
-    
         }
+        console.log(winLossCompare(userWinCount, userLossCount));
     }
     gameLoop();
     
