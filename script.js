@@ -69,7 +69,7 @@ function displayResult(user, computer){
             gameResult='Loss';
             printResult=`${computer} beats ${user}, you lose!`;
             console.log(printResult);
-            console.log(gameResult)
+
             return gameResult;
 
         //Win
@@ -79,7 +79,7 @@ function displayResult(user, computer){
             gameResult='Win';
             printResult=`${user} beats ${computer}, you win!`;
             console.log(printResult);
-            console.log(gameResult)
+
             return gameResult;
 
         //Tie
@@ -89,31 +89,51 @@ function displayResult(user, computer){
             gameResult='Tie';
             printResult=`Tie!`;
             console.log(printResult);
-            console.log(gameResult)
+
             return gameResult;
 
     }
 }
 
 //Keep track of win/loss count
-function winLossCount(gameResult){
+/*function winLossCount(gameResult){
     let userWinCount=0;
     let compWinCount=0;
+    //If user loses
     if(gameResult=='Loss'){
         compWinCount+=1;
+        console.log(userWinCount);
+    //If user wins    
     } else if (gameResult=='Win'){
         userWinCount+=1;
+        console.log(userWinCount);
+    //If tie
     } else if (gameResult=='Tie'){
         userWinCount+=0;
         compWinCount+=0;
     }
-}
+}*/
 
 //Game looping function; play 5 times
 function gameLoop(){
+    let userWinCount=0;
+    let compWinCount=0;
+    let winLossCount = function(result){
+        if(result=='Win'){
+            return userWinCount+=1;
+        } else if(result='Lose'){
+            return compWinCount+=1;
+        }
+    }
     for(i=1;i<=5;i++){
-        winLossCount(displayResult(getUserRPS(), computerRPS()));
-       
+        let result=displayResult(getUserRPS(), computerRPS());
+        console.log(result);
+        winLossCount(result);
+        console.log(userWinCount);
+        //Run displayResult (Win/Loss handling), then pass the result to winLossCount
+        //This should return 
+        
+        
 
     }
 }
