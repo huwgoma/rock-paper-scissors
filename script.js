@@ -127,7 +127,7 @@ function game(){
         }
     }
 
-    //For loop
+    //For loop, loop the game 5 times
     function gameLoop(){
         for(i=1;i<=5;i++){
             let result=displayResult(getUserRPS(), computerRPS());
@@ -138,6 +138,8 @@ function game(){
             //Run displayResult (Win/Loss handling), then pass the result to winLossCount
             //This should return a count of your wins and losses over the 5 games 
         }
+        //after loop is done, compare wins and losses to determine match winner
+        //Log the match result
         console.log(winLossCompare(userWinCount, userLossCount));
     }
     gameLoop();
