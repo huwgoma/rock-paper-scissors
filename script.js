@@ -98,35 +98,56 @@ function displayResult(user, computer){
 
 
 //Game looping function; play 5 times
-function gameLoop(){
+function game(){
     let userWinCount=0;
     let userLossCount=0;
     //Function for counting Wins/Losses
     let winLossCount = function(result){
+        
+
         if(result=='Win'){
-            userWinCount+=1;
+            userWinCount++;
             return userWinCount;
         } else if(result=='Loss'){
-            userLossCount+=1;
+            userLossCount++;
             return userLossCount;
         }
     }
-    for(i=1;i<=5;i++){
-        let result=displayResult(getUserRPS(), computerRPS());
-        console.log(result);
-        winLossCount(result);
-        console.log(userWinCount);
-        console.log(userLossCount);
-        //Run displayResult (Win/Loss handling), then pass the result to winLossCount
-        //This should return 
+    
+    //Function for comparing Win/Loss count and determining overall winner
+    function winLossCompare(userWins, userLosses){
+        let matchResult='';
         
-        
-
+        if (userWins>userLosses){
+            matchResult=`Congratulations, you win ${userWins}-${userLosses}!`;
+        } else if (userWins<userLosses){
+            matchResult=`Computer wins ${userLosses}-${userWins}.`;
+        } else if (userWins==userLosses){
+            matchResult=`It's a tie!`;
+        }
     }
+
+    //For loop
+    function gameLoop(){
+        for(i=1;i<=5;i++){
+            let result=displayResult(getUserRPS(), computerRPS());
+            console.log(result);
+            winLossCount(result);
+            console.log('Your Wins: '+ userWinCount);
+            console.log(`Computer's Wins: ${userLossCount}`);
+            //Run displayResult (Win/Loss handling), then pass the result to winLossCount
+            //This should return a count of your wins and losses over the 5 games 
+            
+            
+    
+        }
+    }
+    gameLoop();
+    
 }
 
 //Play button
 let button=document.querySelector('button');
 button.onclick=function(){
-    gameLoop();
+    game();
 }
