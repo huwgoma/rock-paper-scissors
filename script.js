@@ -44,7 +44,6 @@ function computerRPS(compNum){
 
 
 function displayResult(user, computer){
-    console.log('display');
     let result=''
 
     switch(true){
@@ -66,3 +65,8 @@ function displayResult(user, computer){
 }
 
 displayResult(getUserRPS(), computerRPS());
+
+let button=document.querySelector('button');
+button.onclick=function(){
+    displayResult(getUserRPS(), computerRPS());
+}
