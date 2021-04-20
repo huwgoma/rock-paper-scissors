@@ -95,34 +95,20 @@ function displayResult(user, computer){
     }
 }
 
-//Keep track of win/loss count
-/*function winLossCount(gameResult){
-    let userWinCount=0;
-    let compWinCount=0;
-    //If user loses
-    if(gameResult=='Loss'){
-        compWinCount+=1;
-        console.log(userWinCount);
-    //If user wins    
-    } else if (gameResult=='Win'){
-        userWinCount+=1;
-        console.log(userWinCount);
-    //If tie
-    } else if (gameResult=='Tie'){
-        userWinCount+=0;
-        compWinCount+=0;
-    }
-}*/
+
 
 //Game looping function; play 5 times
 function gameLoop(){
     let userWinCount=0;
-    let compWinCount=0;
+    let userLossCount=0;
+    //Function for counting Wins/Losses
     let winLossCount = function(result){
         if(result=='Win'){
-            return userWinCount+=1;
-        } else if(result='Lose'){
-            return compWinCount+=1;
+            userWinCount+=1;
+            return userWinCount;
+        } else if(result=='Loss'){
+            userLossCount+=1;
+            return userLossCount;
         }
     }
     for(i=1;i<=5;i++){
@@ -130,6 +116,7 @@ function gameLoop(){
         console.log(result);
         winLossCount(result);
         console.log(userWinCount);
+        console.log(userLossCount);
         //Run displayResult (Win/Loss handling), then pass the result to winLossCount
         //This should return 
         
