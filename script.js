@@ -69,8 +69,9 @@ function displayResult(user, computer){
             gameResult='Loss';
             printResult=`${computer} beats ${user}, you lose!`;
             console.log(printResult);
+            console.log(gameResult)
             return gameResult;
-            break;
+
         //Win
         case (user=='Rock' && computer=='Scissors'):
         case (user=='Paper' && computer =='Rock'):
@@ -78,8 +79,9 @@ function displayResult(user, computer){
             gameResult='Win';
             printResult=`${user} beats ${computer}, you win!`;
             console.log(printResult);
+            console.log(gameResult)
             return gameResult;
-            break;
+
         //Tie
         case (user=='Rock' && computer=='Rock'):
         case (user=='Paper' && computer =='Paper'):
@@ -87,24 +89,32 @@ function displayResult(user, computer){
             gameResult='Tie';
             printResult=`Tie!`;
             console.log(printResult);
+            console.log(gameResult)
             return gameResult;
-            break;
+
     }
 }
 
-//Game looping function; play 5 times, then announce the overall winner at the end.
-function gameLoop(){
+//Keep track of win/loss count
+function winLossCount(gameResult){
     let userWinCount=0;
     let compWinCount=0;
+    if(gameResult=='Loss'){
+        compWinCount+=1;
+    } else if (gameResult=='Win'){
+        userWinCount+=1;
+    } else if (gameResult=='Tie'){
+        userWinCount+=0;
+        compWinCount+=0;
+    }
+}
+
+//Game looping function; play 5 times
+function gameLoop(){
     for(i=1;i<=5;i++){
-        displayResult(getUserRPS(), computerRPS());
+        winLossCount(displayResult(getUserRPS(), computerRPS()));
+       
 
-
-
-        /*if(gameResult=='Loss'){
-            userWinCount+=1;
-            console.log(userWinCount);
-        }*/
     }
 }
 
