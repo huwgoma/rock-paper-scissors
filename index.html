@@ -3,11 +3,36 @@
     <head>
         <meta charset='UTF-8'>
         <title>Rock Paper Scissors</title>
-        
+        <link href='styles.css' rel='stylesheet'>
     </head>
     <body>
-        <h1>Rock Paper Scissors Game</h1>
-        <button id='play'>Play Rock Paper Scissors</button>
-        <script src='script.js'></script>
+        <div id='container'>
+            <h1>Rock Paper Scissors</h1>
+            <h2>Choose Your Weapon:</h2>
+            <form id='userRPSForm'>
+                <fieldset name='userRPSChoice'>
+                    <label for='chooseRock' class='userRPSLabel'>
+                        <img src='images/rock.png' class='rpsImage'>
+                        <input type='radio' id='chooseRock' name='userRPSChoice' value='rock'>
+                        Rock
+                    </label>
+                    <label for='choosePaper' class='userRPSLabel'>
+                        <img src='images/paper.png' class='rpsImage'>
+                        <input type='radio' id='choosePaper' name='userRPSChoice' value='paper'>
+                        Paper
+                    </label>
+                    <label for='chooseScissors' class='userRPSLabel'>
+                        <img src='images/scissors.png' class='rpsImage'>
+                        <input type='radio' id='chooseScissors' name='userRPSChoice' value='scissors'>
+                        Scissors
+                    </label>
+                </fieldset>
+                
+                <button id='submitBtn' type='submit'>Submit</button>
+            </form>
+            <button id='play'>Play Rock Paper Scissors</button>
+        </div>
+        
+        <script src='script-modified.js'></script>
     </body>
 </html>

@@ -1,0 +1,46 @@
+html {
+    height:100%;
+}
+body{
+    min-height:100%;
+    position: relative;
+    margin:0;
+}
+#container {
+    display:flex;
+    flex-direction:column;
+    align-items: center;
+
+}
+
+#userRPSForm{
+    display:flex;
+    flex-direction:column;
+    align-items: center;
+}
+fieldset[name='userRPSChoice']{
+    display: grid;
+    grid-template-columns:1fr 1fr 1fr;
+    column-gap: 5px;
+    padding: 20px;
+    
+}
+.rpsImage{
+    width:100px;
+    height:90px;
+}
+.userRPSLabel {
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto 1fr;
+    row-gap: 5px;
+    justify-items: center;
+
+}
+.rpsImage{
+    grid-column:1/3;
+    
+}
+#submitBtn{
+    
+}
