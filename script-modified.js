@@ -4,9 +4,9 @@ submitBtn.addEventListener('click', playGame);
 
 
 function playGame(){
-    getUserRPS();
-    getComputerRPS();
-    winLossCount();
+    //getUserRPS();
+    //getComputerRPS();
+    firstTo5(); //runs getUserRPS(), getComputerRPS(), calcGameResult()
 }
 //Get user input (Rock, Paper, or Scissors) 
 function getUserRPS(){
@@ -14,8 +14,8 @@ function getUserRPS(){
     for(i=0;i<rpsChoices.length;i++){
         if(rpsChoices[i].checked){
             let userRPSChoice=rpsChoices[i].getAttribute('value');
-            let userRPSChoiceFirst=userRPSChoice.charAt(0);
-            userRPSChoice=userRPSChoice.toLowerCase().replace(userRPSChoiceFirst, userRPSChoiceFirst.toUpperCase());
+            let firstLetter=userRPSChoice.charAt(0);
+            userRPSChoice=userRPSChoice.toLowerCase().replace(firstLetter, firstLetter.toUpperCase());
             console.log (userRPSChoice);
             return userRPSChoice;
         }
@@ -39,19 +39,21 @@ function getComputerRPS(){
         compRPS='Rock';
         
         console.log('Computer: ' + compRPS);
-        //Return computer R/P/S to the function caller (displayResult)
+
         return compRPS; 
     //RNG 2 = Paper
     } else if (compNum==2){ 
         compRPS='Paper';
 
         console.log('Computer: ' + compRPS);
+
         return compRPS;
     //RNG 3 = Scissors
     } else if (compNum==3){ 
         compRPS='Scissors'
 
         console.log('Computer: ' + compRPS);
+
         return compRPS;
     } else {
         let errorMessage='Sorry, an error occurred.'
@@ -59,10 +61,9 @@ function getComputerRPS(){
     }
 }
 
-//Display the result of the game
-function displayResult(user, computer){
+//Calculate the result of the game
+function calcGameResult(user, computer){
     let gameResult='';
-    let printResult='';
 
     switch(true){
         //Loss
@@ -70,8 +71,6 @@ function displayResult(user, computer){
         case (user=='Paper' && computer =='Scissors'):
         case (user=='Scissors' && computer == 'Rock'):
             gameResult='Loss';
-            printResult=`${computer} beats ${user}, you lose!`;
-            console.log(printResult);
 
             return gameResult;
 
@@ -80,8 +79,6 @@ function displayResult(user, computer){
         case (user=='Paper' && computer =='Rock'):
         case (user=='Scissors' && computer == 'Paper'):
             gameResult='Win';
-            printResult=`${user} beats ${computer}, you win!`;
-            console.log(printResult);
 
             return gameResult;
 
@@ -90,26 +87,38 @@ function displayResult(user, computer){
         case (user=='Paper' && computer =='Paper'):
         case (user=='Scissors' && computer == 'Scissors'):
             gameResult='Tie';
-            printResult=`Tie!`;
-            console.log(printResult);
 
             return gameResult;
 
     }
 }
+
 //Function for counting Wins/Losses
+let userWinCount=0;
+let userLossCount=0;
+
 function winLossCount(){
-    let userWinCount=0;
-    let userLossCount=0;
-    let gameResult=displayResult(getUserRPS(), getComputerRPS());
+    let gameResult=calcGameResult(getUserRPS(), getComputerRPS());
     console.log(gameResult);
     
     if(gameResult=='Win'){
         userWinCount++;
-        return userWinCount;
     } else if(gameResult=='Loss'){
         userLossCount++;
-        return userLossCount;
     }
+    return [userWinCount, userLossCount];
 }
 
+//Function for playing first to 5
+function firstTo5(){
+    let winLossReturn=winLossCount();
+    let userWinCount=winLossReturn[0];
+    let userLossCount=winLossReturn[1];
+    console.log('User wins:' + userWinCount);
+
+    if (userWinCount>=5){
+        console.log('You win!');
+    } else if (userLossCount>=5){
+        console.log('You lose...');
+    }
+}
