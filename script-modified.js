@@ -1,17 +1,21 @@
+
 //Play button
 let submitBtn=document.querySelector(`button[id='submitBtn']`);
 submitBtn.addEventListener('click', playGame);
 
 function playGame(){
     firstTo5(); //runs winLossCount(), which runs calcGameResult() using getUserRPS() and getComputerRPS() as parameters
+    console.log(userRPSChoice, compRPSChoice);
+    createResults();
 }
 
+let userRPSChoice=''
 //Get user input (Rock, Paper, or Scissors) 
 function getUserRPS(){
     let rpsChoices=document.querySelectorAll(`input[name='userRPSChoice']`);
     for(i=0;i<rpsChoices.length;i++){
         if(rpsChoices[i].checked){
-            let userRPSChoice=rpsChoices[i].getAttribute('value');
+            userRPSChoice=rpsChoices[i].getAttribute('value');
             let firstLetter=userRPSChoice.charAt(0);
             userRPSChoice=userRPSChoice.toLowerCase().replace(firstLetter, firstLetter.toUpperCase());
             console.log (userRPSChoice);
@@ -20,38 +24,37 @@ function getUserRPS(){
     }
 }
 
-//Computer: Generate a random number between 1-3
+let compRPSChoice=''
+//Computer RPS choice
 function computerRNG(){
     let randomNumber=Math.floor(Math.random()*(3-1+1)+1);
     //Return the random number to computerRPS
     return randomNumber; 
 }
-
-//Call computerRNG, then assign a string to compRPS based on the randomly-generated number
 function getComputerRPS(){
     let compNum=computerRNG();
-    let compRPS=''
+    
     //RNG 1 = Rock
     if (compNum==1){ 
-        compRPS='Rock';
+        compRPSChoice='Rock';
         
-        console.log('Computer: ' + compRPS);
+        console.log('Computer: ' + compRPSChoice);
 
-        return compRPS; 
+        return compRPSChoice; 
     //RNG 2 = Paper
     } else if (compNum==2){ 
-        compRPS='Paper';
+        compRPSChoice='Paper';
 
-        console.log('Computer: ' + compRPS);
+        console.log('Computer: ' + compRPSChoice);
 
-        return compRPS;
+        return compRPSChoice;
     //RNG 3 = Scissors
     } else if (compNum==3){ 
-        compRPS='Scissors'
+        compRPSChoice='Scissors'
 
-        console.log('Computer: ' + compRPS);
+        console.log('Computer: ' + compRPSChoice);
 
-        return compRPS;
+        return compRPSChoice;
     } else {
         let errorMessage='Sorry, an error occurred.'
         console.log(errorMessage);
@@ -119,3 +122,33 @@ function firstTo5(){
         console.log('You lose...');
     }
 }
+
+//Dynamically generating DOM
+const container=document.querySelector(`div[id='container']`);
+
+function createResults(){
+    const resultDiv=document.createElement('div');
+    resultDiv.setAttribute('id', 'resultDiv');
+
+
+    //clear the DOM of previous results
+    
+    
+    container.appendChild(resultDiv);
+
+    let displayUserChoice = () => {
+        let userChoiceTitle = document.createElement('h3');
+        userChoiceTitle.textContent='Your Choice:';
+        resultDiv.appendChild(userChoiceTitle);
+
+        let userRPS=userRPSChoice.toLowerCase();
+        let userRPSImage=document.createElement('img');
+        userRPSImage.setAttribute('src', `images/${userRPS}.png`);
+        userRPSImage.classList.add('rpsImage');
+        resultDiv.appendChild(userRPSImage);
+    }
+
+    displayUserChoice();
+}
+
+

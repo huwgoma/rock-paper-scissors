@@ -44,3 +44,9 @@ fieldset[name='userRPSChoice']{
 #submitBtn{
     margin-top: 10px;
 }
+
+#resultDiv {
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr auto 1fr;
+}
