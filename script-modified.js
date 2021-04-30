@@ -2,12 +2,10 @@
 let submitBtn=document.querySelector(`button[id='submitBtn']`);
 submitBtn.addEventListener('click', playGame);
 
-
 function playGame(){
-    //getUserRPS();
-    //getComputerRPS();
-    firstTo5(); //runs getUserRPS(), getComputerRPS(), calcGameResult()
+    firstTo5(); //runs winLossCount(), which runs calcGameResult() using getUserRPS() and getComputerRPS() as parameters
 }
+
 //Get user input (Rock, Paper, or Scissors) 
 function getUserRPS(){
     let rpsChoices=document.querySelectorAll(`input[name='userRPSChoice']`);
@@ -20,7 +18,6 @@ function getUserRPS(){
             return userRPSChoice;
         }
     }
-
 }
 
 //Computer: Generate a random number between 1-3
