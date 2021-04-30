@@ -129,12 +129,22 @@ const container=document.querySelector(`div[id='container']`);
 function createResults(){
     const resultDiv=document.createElement('div');
     resultDiv.setAttribute('id', 'resultDiv');
-
-
+    
+    
     //clear the DOM of previous results
+    let clearDOM = () => {
+        let containerChildList=container.children;
+        console.log(containerChildList);
+        for(i=0; i<containerChildList.length;i++){
+            if(containerChildList[i].tagName=='DIV' && containerChildList[i].id=='resultDiv'){
+                container.removeChild(containerChildList[i]);
+                
+            } else {
+                console.log('?')
+            }
+        }
+    }
     
-    
-    container.appendChild(resultDiv);
 
     let displayUserChoice = () => {
         let userChoiceTitle = document.createElement('h3');
@@ -147,7 +157,8 @@ function createResults(){
         userRPSImage.classList.add('rpsImage');
         resultDiv.appendChild(userRPSImage);
     }
-
+    clearDOM();
+    container.appendChild(resultDiv);
     displayUserChoice();
 }
 
