@@ -5,36 +5,16 @@ submitBtn.addEventListener('click', getUserRPS);
 
 
 //Get user input (Rock, Paper, or Scissors) 
-function getUserRPS(e){
+function getUserRPS(){
     let rpsChoices=document.querySelectorAll(`input[name='userRPSChoice']`);
-    console.log(rpsChoices);
     for(i=0;i<rpsChoices.length;i++){
         if(rpsChoices[i].checked){
-            console.log(rpsChoices[i]);
-        } else {
-            console.log('disappointment');
+            let userRPSChoice=rpsChoices[i].getAttribute('value');
+            console.log (userRPSChoice);
+            return userRPSChoice;
         }
     }
-    
-    
-    //let userInput = prompt('Please enter Rock, Paper, or Scissors:', '');
-    /*userInput=userInput.toLowerCase(); // Convert to lowercase
-    let firstLetter=userInput.charAt(0); // Get the first letter of user input
-    userInput=userInput.replace(firstLetter, firstLetter.toUpperCase());
 
-    console.log('Player: ' + userInput);
-
-    //If user input is not rock/paper/scissors, re-run getUserRPS()
-    if(userInput!='Rock'&& userInput!='Paper'&& userInput!='Scissors'){
-        alert('Please enter either Rock, Paper, or Scissors!');
-        //Re-run the user input function
-        //Return the value of getUserRPS() to its function caller (displayResult)
-        return getUserRPS();
-    } else {
-        // Return userInput(R/P/S) to the function caller (displayResult)
-        return userInput; 
-    }*/
-    
 }
 
 //Computer: Generate a random number between 1-3
