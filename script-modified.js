@@ -1,7 +1,24 @@
+//Play button
+let submitBtn=document.querySelector(`button[id='submitBtn']`);
+submitBtn.addEventListener('click', getUserRPS);
+
+
+
 //Get user input (Rock, Paper, or Scissors) 
-function getUserRPS(){
-    let userInput = prompt('Please enter Rock, Paper, or Scissors:', '');
-    userInput=userInput.toLowerCase(); // Convert to lowercase
+function getUserRPS(e){
+    let rpsChoices=document.querySelectorAll(`input[name='userRPSChoice']`);
+    console.log(rpsChoices);
+    for(i=0;i<rpsChoices.length;i++){
+        if(rpsChoices[i].checked){
+            console.log(rpsChoices[i]);
+        } else {
+            console.log('disappointment');
+        }
+    }
+    
+    
+    //let userInput = prompt('Please enter Rock, Paper, or Scissors:', '');
+    /*userInput=userInput.toLowerCase(); // Convert to lowercase
     let firstLetter=userInput.charAt(0); // Get the first letter of user input
     userInput=userInput.replace(firstLetter, firstLetter.toUpperCase());
 
@@ -16,7 +33,7 @@ function getUserRPS(){
     } else {
         // Return userInput(R/P/S) to the function caller (displayResult)
         return userInput; 
-    }
+    }*/
     
 }
 
@@ -144,8 +161,3 @@ function playGame(){
     
 }
 
-//Play button
-let button=document.querySelector('button');
-button.onclick=function(){
-    playGame();
-}
