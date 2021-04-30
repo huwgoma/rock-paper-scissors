@@ -5,7 +5,7 @@ submitBtn.addEventListener('click', playGame);
 
 function playGame(){
     firstTo5(); //runs winLossCount(), which runs calcGameResult() using getUserRPS() and getComputerRPS() as parameters
-    console.log(userRPSChoice, compRPSChoice);
+    console.log(userRPSChoice, computerRPSChoice);
     createResults();
 }
 
@@ -24,7 +24,7 @@ function getUserRPS(){
     }
 }
 
-let compRPSChoice=''
+let computerRPSChoice=''
 //Computer RPS choice
 function computerRNG(){
     let randomNumber=Math.floor(Math.random()*(3-1+1)+1);
@@ -32,29 +32,29 @@ function computerRNG(){
     return randomNumber; 
 }
 function getComputerRPS(){
-    let compNum=computerRNG();
+    let computerNum=computerRNG();
     
     //RNG 1 = Rock
-    if (compNum==1){ 
-        compRPSChoice='Rock';
+    if (computerNum==1){ 
+        computerRPSChoice='Rock';
         
-        console.log('Computer: ' + compRPSChoice);
+        console.log('Computer: ' + computerRPSChoice);
 
-        return compRPSChoice; 
+        return computerRPSChoice; 
     //RNG 2 = Paper
-    } else if (compNum==2){ 
-        compRPSChoice='Paper';
+    } else if (computerNum==2){ 
+        computerRPSChoice='Paper';
 
-        console.log('Computer: ' + compRPSChoice);
+        console.log('Computer: ' + computerRPSChoice);
 
-        return compRPSChoice;
+        return computerRPSChoice;
     //RNG 3 = Scissors
-    } else if (compNum==3){ 
-        compRPSChoice='Scissors'
+    } else if (computerNum==3){ 
+        computerRPSChoice='Scissors'
 
-        console.log('Computer: ' + compRPSChoice);
+        console.log('Computer: ' + computerRPSChoice);
 
-        return compRPSChoice;
+        return computerRPSChoice;
     } else {
         let errorMessage='Sorry, an error occurred.'
         console.log(errorMessage);
@@ -137,29 +137,54 @@ function createResults(){
         console.log(containerChildList);
         for(i=0; i<containerChildList.length;i++){
             if(containerChildList[i].tagName=='DIV' && containerChildList[i].id=='resultDiv'){
-                container.removeChild(containerChildList[i]);
-                
-            } else {
-                console.log('?')
+                container.removeChild(containerChildList[i]);   
             }
         }
     }
-    
-
-    let displayUserChoice = () => {
-        let userChoiceTitle = document.createElement('h3');
-        userChoiceTitle.textContent='Your Choice:';
-        resultDiv.appendChild(userChoiceTitle);
-
-        let userRPS=userRPSChoice.toLowerCase();
-        let userRPSImage=document.createElement('img');
-        userRPSImage.setAttribute('src', `images/${userRPS}.png`);
-        userRPSImage.classList.add('rpsImage');
-        resultDiv.appendChild(userRPSImage);
-    }
     clearDOM();
     container.appendChild(resultDiv);
+
+    let displayUserChoice = () => {
+        let userDiv=document.createElement('div');
+        userDiv.setAttribute('id', 'userResultDiv');
+        resultDiv.appendChild(userDiv);
+
+            let userChoiceTitle = document.createElement('h3');
+            userChoiceTitle.textContent='Your Choice:';
+            userDiv.appendChild(userChoiceTitle);
+
+            let userRPS=userRPSChoice.toLowerCase();
+            let userRPSImage=document.createElement('img');
+            userRPSImage.setAttribute('src', `images/${userRPS}.png`);
+            userRPSImage.classList.add('rpsImage');
+            userDiv.appendChild(userRPSImage);
+
+            let userChoiceText=document.createElement('p');
+            userChoiceText.textContent=`${userRPSChoice}`;
+            userDiv.appendChild(userChoiceText);
+    }
+    let displayComputerChoice = () => {
+        let computerDiv=document.createElement('div');
+        computerDiv.setAttribute('id', 'computerResultDiv');
+        resultDiv.appendChild(computerDiv);
+
+            let computerChoiceTitle = document.createElement('h3');
+            computerChoiceTitle.textContent=`Computer's Choice:`;
+            computerDiv.appendChild(computerChoiceTitle);
+
+            let computerRPS=computerRPSChoice.toLowerCase();
+            let computerRPSImage=document.createElement('img');
+            computerRPSImage.setAttribute('src', `images/${computerRPS}.png`);
+            computerRPSImage.classList.add('rpsImage');
+            computerDiv.appendChild(computerRPSImage);
+
+            let computerChoiceText=document.createElement('p');
+            computerChoiceText.textContent=`${computerRPSChoice}`;
+            computerDiv.appendChild(computerChoiceText);
+    }
+    
     displayUserChoice();
+    displayComputerChoice();
 }
 
 
