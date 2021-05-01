@@ -5,8 +5,9 @@ submitBtn.addEventListener('click', playGame);
 
 function playGame(){
     firstTo5(); //runs winLossCount(), which runs calcGameResult() using getUserRPS() and getComputerRPS() as parameters
-    console.log(userRPSChoice, computerRPSChoice);
-    createResults();
+    clearDOM();
+    showChoices();
+    showResults();
 }
 
 let userRPSChoice=''
@@ -125,66 +126,81 @@ function firstTo5(){
 
 //Dynamically generating DOM
 const container=document.querySelector(`div[id='container']`);
-
-function createResults(){
-    const resultDiv=document.createElement('div');
-    resultDiv.setAttribute('id', 'resultDiv');
-    
-    
-    //clear the DOM of previous results
-    let clearDOM = () => {
-        let containerChildList=container.children;
-        console.log(containerChildList);
-        for(i=0; i<containerChildList.length;i++){
-            if(containerChildList[i].tagName=='DIV' && containerChildList[i].id=='resultDiv'){
-                container.removeChild(containerChildList[i]);   
-            }
+//clear the DOM of previous choices
+function clearDOM(){
+    let containerChildList=container.children;
+    for(i=0; i<containerChildList.length;i++){
+        if(containerChildList[i].tagName=='DIV' && containerChildList[i].id=='choiceDiv'){
+            container.removeChild(containerChildList[i]);   
         }
     }
-    clearDOM();
-    container.appendChild(resultDiv);
+}
+
+function showChoices(){
+    const choiceDiv=document.createElement('div');
+    choiceDiv.setAttribute('id', 'choiceDiv');
+    container.appendChild(choiceDiv);
 
     let displayUserChoice = () => {
-        let userDiv=document.createElement('div');
-        userDiv.setAttribute('id', 'userResultDiv');
-        resultDiv.appendChild(userDiv);
+        let userChoiceDiv=document.createElement('div');
+        userChoiceDiv.setAttribute('id', 'userChoiceDiv');
+        choiceDiv.appendChild(userChoiceDiv);
 
             let userChoiceTitle = document.createElement('h3');
             userChoiceTitle.textContent='Your Choice:';
-            userDiv.appendChild(userChoiceTitle);
+            userChoiceDiv.appendChild(userChoiceTitle);
 
             let userRPS=userRPSChoice.toLowerCase();
             let userRPSImage=document.createElement('img');
             userRPSImage.setAttribute('src', `images/${userRPS}.png`);
             userRPSImage.classList.add('rpsImage');
-            userDiv.appendChild(userRPSImage);
+            userChoiceDiv.appendChild(userRPSImage);
 
             let userChoiceText=document.createElement('p');
             userChoiceText.textContent=`${userRPSChoice}`;
-            userDiv.appendChild(userChoiceText);
+            userChoiceDiv.appendChild(userChoiceText);
     }
     let displayComputerChoice = () => {
-        let computerDiv=document.createElement('div');
-        computerDiv.setAttribute('id', 'computerResultDiv');
-        resultDiv.appendChild(computerDiv);
+        let computerChoiceDiv=document.createElement('div');
+        computerChoiceDiv.setAttribute('id', 'computerChoiceDiv');
+        choiceDiv.appendChild(computerChoiceDiv);
 
             let computerChoiceTitle = document.createElement('h3');
             computerChoiceTitle.textContent=`Computer's Choice:`;
-            computerDiv.appendChild(computerChoiceTitle);
+            computerChoiceDiv.appendChild(computerChoiceTitle);
 
             let computerRPS=computerRPSChoice.toLowerCase();
             let computerRPSImage=document.createElement('img');
             computerRPSImage.setAttribute('src', `images/${computerRPS}.png`);
             computerRPSImage.classList.add('rpsImage');
-            computerDiv.appendChild(computerRPSImage);
+            computerChoiceDiv.appendChild(computerRPSImage);
 
             let computerChoiceText=document.createElement('p');
             computerChoiceText.textContent=`${computerRPSChoice}`;
-            computerDiv.appendChild(computerChoiceText);
+            computerChoiceDiv.appendChild(computerChoiceText);
     }
     
+
     displayUserChoice();
     displayComputerChoice();
 }
 
+/*function showResults(){
+    let gameResult=calcGameResult(userRPSChoice, computerRPSChoice);
+    const resultDiv=document.createElement('div');
+    resultDiv.setAttribute('id', 'resultDiv');
+    container.appendChild(resultDiv);
 
+    let displayGameResult = () => {
+        let resultTitle=document.createElement('h3');
+        if(gameResult=='Win'){
+            resultTitle.textContent='Result:'
+        }
+        
+        resultDiv.appendChild(resultTitle);
+    }
+    
+
+
+    
+}*/

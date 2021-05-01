@@ -45,13 +45,15 @@ fieldset[name='userRPSChoice']{
     margin-top: 10px;
 }
 
-#resultDiv {
+#choiceDiv {
     display:grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr;
+    grid-template-rows: 1fr auto;
     column-gap:20px;
-    grid-template-areas:
-        "user computer"
-        "user computer"
-        "user computer";
 }
+#userChoiceDiv, #computerChoiceDiv {
+    display:grid;
+    grid-template-columns: 1fr;
+    justify-items: center;
+}
+
