@@ -44,6 +44,9 @@ fieldset[name='userRPSChoice']{
 #submitBtn{
     margin-top: 10px;
 }
+#submitBtn:disabled{
+    cursor:not-allowed;
+}
 
 #choiceDiv {
     display:grid;

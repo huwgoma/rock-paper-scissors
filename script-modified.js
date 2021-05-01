@@ -1,16 +1,16 @@
 
 //Play button
 let submitBtn=document.querySelector(`button[id='submitBtn']`);
-submitBtn.addEventListener('click', buttonClickEvents);
+submitBtn.addEventListener('click', submitBtnClickEvents);
 
-function buttonClickEvents(){
+function submitBtnClickEvents(){
     clearDOM();
     calcGameResult(getUserRPS(), getComputerRPS()); //play game
 
     showChoices();
     showResults();
     firstTo5();
-    
+    playAgain();
 }
 
 let userRPSChoice=''
@@ -213,4 +213,34 @@ function firstTo5(){
         container.appendChild(matchResult);
     }
     
+}
+
+function playAgain(){
+    let disableButton = () => {
+        if(userWinCount>=5 || userLossCount>=5){
+            submitBtn.setAttribute('disabled', 'true');
+        }
+    }
+
+    const playAgainBtn=document.createElement('button');
+    playAgainBtn.textContent='Play Again?';
+    let createPlayAgain = () => {
+        if(userWinCount>=5 || userLossCount>=5){
+            container.appendChild(playAgainBtn);
+        }
+    }
+    disableButton();
+    createPlayAgain();
+
+    let resetDOM = () => {
+        clearDOM();
+        userWinCount=0;
+        userLossCount=0;
+        userRPSChoice='';
+        computerRPSChoice='';
+        submitBtn.removeAttribute('disabled');
+    }
+
+    playAgainBtn.addEventListener('click', resetDOM);
+
 }
