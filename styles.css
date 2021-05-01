@@ -57,3 +57,12 @@ fieldset[name='userRPSChoice']{
     justify-items: center;
 }
 
+#resultDiv{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    justify-items: center;
+}
+.resultTitle{
+    grid-column:1/3;
+}

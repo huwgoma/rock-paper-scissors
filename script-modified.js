@@ -1,13 +1,15 @@
 
 //Play button
 let submitBtn=document.querySelector(`button[id='submitBtn']`);
-submitBtn.addEventListener('click', playGame);
+submitBtn.addEventListener('click', buttonClickEvents);
 
-function playGame(){
-    firstTo5(); //runs winLossCount(), which runs calcGameResult() using getUserRPS() and getComputerRPS() as parameters
+function buttonClickEvents(){
+     //runs winLossCount(), which runs calcGameResult() using getUserRPS() and getComputerRPS() as parameters
     clearDOM();
+    firstTo5();
     showChoices();
     showResults();
+    
 }
 
 let userRPSChoice=''
@@ -72,7 +74,6 @@ function calcGameResult(user, computer){
         case (user=='Paper' && computer =='Scissors'):
         case (user=='Scissors' && computer == 'Rock'):
             gameResult='Loss';
-
             return gameResult;
 
         //Win
@@ -80,7 +81,6 @@ function calcGameResult(user, computer){
         case (user=='Paper' && computer =='Rock'):
         case (user=='Scissors' && computer == 'Paper'):
             gameResult='Win';
-
             return gameResult;
 
         //Tie
@@ -88,7 +88,6 @@ function calcGameResult(user, computer){
         case (user=='Paper' && computer =='Paper'):
         case (user=='Scissors' && computer == 'Scissors'):
             gameResult='Tie';
-
             return gameResult;
 
     }
@@ -115,13 +114,17 @@ function firstTo5(){
     let winLossReturn=winLossCount();
     let userWinCount=winLossReturn[0];
     let userLossCount=winLossReturn[1];
-    console.log('User wins:' + userWinCount);
 
+    //DOM
+    let matchResult=document.createElement('p');
     if (userWinCount>=5){
-        console.log('You win!');
+        matchResult.textContent=`Congratulations, you won!`;
+        container.appendChild(matchResult);
     } else if (userLossCount>=5){
-        console.log('You lose...');
+        matchResult.textContent=`You lost...`;
+        container.appendChild(matchResult);
     }
+    
 }
 
 
@@ -197,8 +200,9 @@ function showResults(){
 
     let displayGameResult = () => {
         let resultTitle=document.createElement('h3');
+        resultTitle.classList.add('resultTitle');
         if(gameResult=='Win'){
-            resultTitle.textContent='Result: User wins!';
+            resultTitle.textContent='Result: You win!';
         } else if (gameResult=='Loss') {
             resultTitle.textContent='Result: Computer wins.';
         } else {
@@ -208,7 +212,18 @@ function showResults(){
         resultDiv.appendChild(resultTitle);
     }
     
+    let displayRunningScore = () => {
+        let userScore=document.createElement('p');
+        userScore.textContent=`Your Wins: ${userWinCount}`;
+        resultDiv.appendChild(userScore);
 
+        let computerScore=document.createElement('p');
+        computerScore.textContent=`Computer's Wins: ${userLossCount}`;
+        resultDiv.appendChild(computerScore);
+         
+    }
 
     displayGameResult();
+    displayRunningScore();
 }
+
