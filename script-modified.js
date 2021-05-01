@@ -6,9 +6,10 @@ submitBtn.addEventListener('click', buttonClickEvents);
 function buttonClickEvents(){
     clearDOM();
     calcGameResult(getUserRPS(), getComputerRPS()); //play game
-    firstTo5();
+
     showChoices();
     showResults();
+    firstTo5();
     
 }
 
@@ -90,25 +91,6 @@ function winLossCount(){
     }
     return [userWinCount, userLossCount];
 }
-
-//Function for playing first to 5
-function firstTo5(){
-    //let winLossReturn=winLossCount();
-    //let userWinCount=winLossReturn[0];
-    //let userLossCount=winLossReturn[1];
-
-    //DOM
-    let matchResult=document.createElement('p');
-    if (userWinCount>=5){
-        matchResult.textContent=`Congratulations, you won!`;
-        container.appendChild(matchResult);
-    } else if (userLossCount>=5){
-        matchResult.textContent=`You lost...`;
-        container.appendChild(matchResult);
-    }
-    
-}
-
 
 //Dynamically generating DOM
 const container=document.querySelector(`div[id='container']`);
@@ -197,8 +179,8 @@ function showResults(){
     let displayRunningScore = () => {
         //Count the user's wins and losses
         let winLossReturn=winLossCount();
-        let userWinCount=winLossReturn[0];
-        let userLossCount=winLossReturn[1];
+        userWinCount=winLossReturn[0];
+        userLossCount=winLossReturn[1];
 
         let userScore=document.createElement('p');
         userScore.textContent=`Your Wins: ${userWinCount}`;
@@ -214,3 +196,21 @@ function showResults(){
     displayRunningScore();
 }
 
+
+//Function for playing first to 5
+function firstTo5(){
+    //let winLossReturn=winLossCount();
+    //let userWinCount=winLossReturn[0];
+    //let userLossCount=winLossReturn[1];
+
+    //DOM
+    let matchResult=document.createElement('p');
+    if (userWinCount>=5){
+        matchResult.textContent=`Congratulations, you won!`;
+        container.appendChild(matchResult);
+    } else if (userLossCount>=5){
+        matchResult.textContent=`You lost...`;
+        container.appendChild(matchResult);
+    }
+    
+}
