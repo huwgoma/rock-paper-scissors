@@ -204,7 +204,7 @@ function firstTo5(){
     //let userLossCount=winLossReturn[1];
 
     //DOM
-    let matchResult=document.createElement('p');
+    let matchResult=document.createElement('h3');
     if (userWinCount>=5){
         matchResult.textContent=`Congratulations, you won!`;
         container.appendChild(matchResult);
