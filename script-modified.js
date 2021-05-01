@@ -6,6 +6,7 @@ submitBtn.addEventListener('click', buttonClickEvents);
 function buttonClickEvents(){
      //runs winLossCount(), which runs calcGameResult() using getUserRPS() and getComputerRPS() as parameters
     clearDOM();
+    calcGameResult(getUserRPS(), getComputerRPS());
     firstTo5();
     showChoices();
     showResults();
@@ -16,12 +17,12 @@ let userRPSChoice=''
 //Get user input (Rock, Paper, or Scissors) 
 function getUserRPS(){
     let rpsChoices=document.querySelectorAll(`input[name='userRPSChoice']`);
+    console.log('user RPS')
     for(i=0;i<rpsChoices.length;i++){
         if(rpsChoices[i].checked){
             userRPSChoice=rpsChoices[i].getAttribute('value');
             let firstLetter=userRPSChoice.charAt(0);
             userRPSChoice=userRPSChoice.toLowerCase().replace(firstLetter, firstLetter.toUpperCase());
-            console.log (userRPSChoice);
             return userRPSChoice;
         }
     }
@@ -36,37 +37,22 @@ function computerRNG(){
 }
 function getComputerRPS(){
     let computerNum=computerRNG();
-    
-    //RNG 1 = Rock
+    console.log('computer RPS')
     if (computerNum==1){ 
         computerRPSChoice='Rock';
-        
-        console.log('Computer: ' + computerRPSChoice);
-
         return computerRPSChoice; 
-    //RNG 2 = Paper
     } else if (computerNum==2){ 
         computerRPSChoice='Paper';
-
-        console.log('Computer: ' + computerRPSChoice);
-
         return computerRPSChoice;
-    //RNG 3 = Scissors
     } else if (computerNum==3){ 
         computerRPSChoice='Scissors'
-
-        console.log('Computer: ' + computerRPSChoice);
-
         return computerRPSChoice;
-    } else {
-        let errorMessage='Sorry, an error occurred.'
-        console.log(errorMessage);
     }
 }
 
-//Calculate the result of the game
+//Play and calculate the result of the game
+let gameResult='';
 function calcGameResult(user, computer){
-    let gameResult='';
 
     switch(true){
         //Loss
@@ -98,8 +84,6 @@ let userWinCount=0;
 let userLossCount=0;
 
 function winLossCount(){
-    let gameResult=calcGameResult(getUserRPS(), getComputerRPS());
-    console.log(gameResult);
     
     if(gameResult=='Win'){
         userWinCount++;
