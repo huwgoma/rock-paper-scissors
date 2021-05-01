@@ -4,9 +4,8 @@ let submitBtn=document.querySelector(`button[id='submitBtn']`);
 submitBtn.addEventListener('click', buttonClickEvents);
 
 function buttonClickEvents(){
-     //runs winLossCount(), which runs calcGameResult() using getUserRPS() and getComputerRPS() as parameters
     clearDOM();
-    calcGameResult(getUserRPS(), getComputerRPS());
+    calcGameResult(getUserRPS(), getComputerRPS()); //play game
     firstTo5();
     showChoices();
     showResults();
@@ -84,7 +83,6 @@ let userWinCount=0;
 let userLossCount=0;
 
 function winLossCount(){
-    
     if(gameResult=='Win'){
         userWinCount++;
     } else if(gameResult=='Loss'){
@@ -95,9 +93,9 @@ function winLossCount(){
 
 //Function for playing first to 5
 function firstTo5(){
-    let winLossReturn=winLossCount();
-    let userWinCount=winLossReturn[0];
-    let userLossCount=winLossReturn[1];
+    //let winLossReturn=winLossCount();
+    //let userWinCount=winLossReturn[0];
+    //let userLossCount=winLossReturn[1];
 
     //DOM
     let matchResult=document.createElement('p');
@@ -197,6 +195,11 @@ function showResults(){
     }
     
     let displayRunningScore = () => {
+        //Count the user's wins and losses
+        let winLossReturn=winLossCount();
+        let userWinCount=winLossReturn[0];
+        let userLossCount=winLossReturn[1];
+
         let userScore=document.createElement('p');
         userScore.textContent=`Your Wins: ${userWinCount}`;
         resultDiv.appendChild(userScore);
