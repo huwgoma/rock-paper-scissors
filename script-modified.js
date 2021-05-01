@@ -124,15 +124,19 @@ function firstTo5(){
     }
 }
 
+
 //Dynamically generating DOM
 const container=document.querySelector(`div[id='container']`);
 //clear the DOM of previous choices
 function clearDOM(){
     let containerChildList=container.children;
-    for(i=0; i<containerChildList.length;i++){
-        if(containerChildList[i].tagName=='DIV' && containerChildList[i].id=='choiceDiv'){
-            container.removeChild(containerChildList[i]);   
+    for(i=containerChildList.length-1; i>=0;i--){
+        if(containerChildList[i].tagName=='FORM' && containerChildList[i].id=='userRPSForm'){
+            break;
+        } else {
+            container.removeChild(containerChildList[i]); 
         }
+        
     }
 }
 
