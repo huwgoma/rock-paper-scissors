@@ -185,7 +185,7 @@ function showChoices(){
     displayComputerChoice();
 }
 
-/*function showResults(){
+function showResults(){
     let gameResult=calcGameResult(userRPSChoice, computerRPSChoice);
     const resultDiv=document.createElement('div');
     resultDiv.setAttribute('id', 'resultDiv');
@@ -194,7 +194,11 @@ function showChoices(){
     let displayGameResult = () => {
         let resultTitle=document.createElement('h3');
         if(gameResult=='Win'){
-            resultTitle.textContent='Result:'
+            resultTitle.textContent='Result: User wins!';
+        } else if (gameResult=='Loss') {
+            resultTitle.textContent='Result: Computer wins.';
+        } else {
+            resultTitle.textContent='Result: Tie!';
         }
         
         resultDiv.appendChild(resultTitle);
@@ -202,5 +206,5 @@ function showChoices(){
     
 
 
-    
-}*/
+    displayGameResult();
+}
